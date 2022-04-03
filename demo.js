@@ -1,1 +1,1 @@
-console.log('Bye Git!');
+console.log('I hate Git!');
