@@ -1,16 +1,13 @@
-console.log(document.domain);
-console.log(document.URL);
-console.log(document.title);
-console.log(document.doctype);
-console.log(document.head);
-console.log(document.body);
-console.log(document.all);
-console.log(document.forms);
-console.log(document.links);
-console.log(document.getElementById('header-title'));
-let headerTitle = document.getElementById('header-title');
-let header = document.getElementById('main-header');
-console.log('headerTitle');
-headerTitle.style.borderBottom = 'solid 3px #000';
-header.style.font='bold';
-header.style.textColor='green';
+var items= document.getElementsByClassName('list-group-item');
+console.log(items);
+console.log(items[1]);
+items[1].textContent='Hello 2';
+items[1].style.fontWeight='bold';
+items[1].style.backgroundColor='yellow';
+for(let i=0;i<items.length;i++){
+    items[i].style.backgroundColor='#f4f4f4';
+}
+items[2].style.backgroundColor='green';
+for(let i=0;i<items.length;i++){
+    items[i].style.fontWeight='bold';
+}
