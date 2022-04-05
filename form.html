@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+     
+
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <p align="center"><b>Book A Call</b></p>
+
+    <p align="center">Book a call slot and our representative will call you within 1hr of selected time</p>
+
+    <form action="#" onsubmit="saveData()" >
+
+        <label>Name</label><br>
+
+        <input type="text" name="username" id="name"required><br>
+
+        <label>Email</label><br>
+
+        <input type="email" name="email" id="email" required><br>
+
+        <label>Phone</label><br>
+
+        <input type="number" name="phone" id="number" required><br>
+
+        <label>Time for call</label><br>
+
+        <input type="datetime-local" name="time" id="time" required><br>
+
+        <button>Get A Call</button>
+
+    </form>
+
+
+
+
+
+    <script>
+     function saveData(){
+     let name,email,number,time;
+     name=document.getElementById("name").value;
+     email=document.getElementById("email").value;
+     number=document.getElementById("number").value;
+     time=document.getElementById("time").value;
+     localStorage.setItem("name",name);
+     localStorage.setItem("email",email); 
+     localStorage.setItem("number",number);
+     localStorage.setItem("time",time);
+     }
+    </script>
+
+</body>
+
+</html>
