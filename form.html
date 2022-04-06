@@ -20,7 +20,7 @@
 
     <p align="center">Book a call slot and our representative will call you within 1hr of selected time</p>
 
-    <form action="#" onsubmit="saveData()" >
+    <form action="#" onsubmit="onsignup(event)" >
 
         <label>Name</label><br>
 
@@ -47,17 +47,22 @@
 
 
     <script>
-     function saveData(){
-     let name,email,number,time;
-     name=document.getElementById("name").value;
-     email=document.getElementById("email").value;
-     number=document.getElementById("number").value;
-     time=document.getElementById("time").value;
-     localStorage.setItem("name",name);
-     localStorage.setItem("email",email); 
-     localStorage.setItem("number",number);
-     localStorage.setItem("time",time);
-     }
+             
+    function onsignup(event) {
+     event.preventDefault();
+
+    let myObj={
+      name : event.target.username.value,
+      email: event.target.email.value,
+      number:event.target.phone.value,
+      time : event.target.time.value
+    };
+
+    let myObj_serialized= JSON.stringify(myObj);
+    localStorage.setItem("myObj",myObj_serialized)
+    let MyObj_deserialized =  JSON.parse(localStorage.getItem("myObj"));
+    console.log(MyObj_deserialized);
+}
     </script>
 
 </body>
