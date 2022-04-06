@@ -20,7 +20,7 @@
 
     <p align="center">Book a call slot and our representative will call you within 1hr of selected time</p>
 
-    <form action="#" onsubmit="onsignup(event)" >
+    <form action="#" onsubmit="saveData(event)" >
 
         <label>Name</label><br>
 
@@ -42,27 +42,38 @@
 
     </form>
 
-
+<ul id='listOfUsers'> </ul>
 
 
 
     <script>
              
-    function onsignup(event) {
-     event.preventDefault();
 
-    let myObj={
-      name : event.target.username.value,
-      email: event.target.email.value,
-      number:event.target.phone.value,
-      time : event.target.time.value
-    };
+function saveData(event){
+    event.preventDefault();
+    const name = event.target.username.value;
+    const email = event.target.email.value;
+    const number = event.target.number.value;
+    const time = event.target.time.value;
 
-    let myObj_serialized= JSON.stringify(myObj);
-    localStorage.setItem("myObj",myObj_serialized)
-    let MyObj_deserialized =  JSON.parse(localStorage.getItem("myObj"));
-    console.log(MyObj_deserialized);
+    const obj={
+        name,
+        email,
+        number,
+        time
+    }
+    localStorage.setItem(obj.email,JSON.stringify(obj))
+    showNewUsersOnScreen(obj)
+  
 }
+
+function showNewUsersOnScreen(user){
+    const parentNode= document.getElementById('listOfUsers');
+    const childHTMl= `<li> ${user.name}--${user.email}--${user.number}--${user.time}</li>`
+    parentNode.innerHTML= parentNode.innerHTML + childHTMl;
+}
+
+
     </script>
 
 </body>
