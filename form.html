@@ -45,12 +45,13 @@
 <ul id='listOfUsers'> </ul>
 
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
     <script>
              
 
 function saveData(event){
     event.preventDefault();
+    
     const name = event.target.username.value;
     const email = event.target.email.value;
     const number = event.target.number.value;
@@ -62,8 +63,16 @@ function saveData(event){
         number,
         time
     }
-    localStorage.setItem(obj.email,JSON.stringify(obj))
-    showNewUsersOnScreen(obj)
+    //localStorage.setItem(obj.email,JSON.stringify(obj))
+    //showNewUsersOnScreen(obj)
+    axios.post('https://crudcrud.com/api/6878d1b0d1964963965fae43cdf6d1ca/appointmentData',obj)
+    .then(response=>{
+        showNewUsersOnScreen(response.data);
+        console.log(response);
+    })
+    .catch((err)=>{
+       console.log(err);
+    })
 
 }
 
@@ -86,7 +95,7 @@ function showNewUsersOnScreen(user){
         }
     const parentNode= document.getElementById('listOfUsers');
     const childHTMl= `<li id =${user.email}> ${user.name}--${user.email}--${user.number}--${user.time}
-        <button onclick=deleteUser('${user.email}')>Edit</button>
+        <button onclick=editUser('${user.name}','${user.email}','${user.number}','${user.time}')>Edit</button>
          <button onclick=deleteUser('${user.email}')>Delete</button></li>`
     parentNode.innerHTML= parentNode.innerHTML + childHTMl;
     console.log(parentNode.innerHTML);
@@ -95,6 +104,13 @@ function showNewUsersOnScreen(user){
 function deleteUser(email) {
     localStorage.removeItem(email)
     removeItemFromScreen(email)
+}
+
+function editUser(name,email,number,time){
+        document.getElementById("name").value = name;
+        document.getElementById("email").value = email;
+        document.getElementById("number").value = number;
+        document.getElementById("time").value = time;
 }
 
 function removeUserFromScreen(email){
