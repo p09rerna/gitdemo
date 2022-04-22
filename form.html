@@ -77,6 +77,19 @@ function saveData(event){
 }
 
   window.addEventListener("DOMContentLoaded", ()=>{
+        
+      axios.get('https://crudcrud.com/api/6878d1b0d1964963965fae43cdf6d1ca/appointmentData')
+      .then((response)=>{
+          console.log(response);
+          for(var i=0;i<response.data.length;i++){
+              showNewUsersOnScreen(response.data[i]);
+          }
+      })
+      .catch((err)=>{
+      console.log(err);
+      })
+
+      /*
       const localStorageObj= localStorage;
       const localStoragekeys=Object.keys(localStorageObj);
 
@@ -85,7 +98,7 @@ function saveData(event){
           const userDetailsString= localStorageObj[key];
           const userDetailsObj=JSON.parse(userDetailsString);
           showNewUsersOnScreen(userDetailsObj)
-      }
+      }*/
   })
 
 
