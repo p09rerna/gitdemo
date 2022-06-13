@@ -1,4 +1,5 @@
 const Product = require('../models/product');
+const Cart = require('../models/cart');
 
 exports.getProducts = (req, res, next) => {
   Product.fetchAll(products => {
@@ -38,6 +39,14 @@ exports.getCart = (req, res, next) => {
   });
 };
 
+exports.postCart= (req,res,next) =>{
+  const prodId = req.body.productId;
+  Product.findById(prodId,(product)=>{
+    Cart.addProduct( prodId,product.price);
+  }); 
+  res.redirect('/cart');
+}
+
 exports.getOrders = (req, res, next) => {
   res.render('shop/orders', {
     path: '/orders',
@@ -52,7 +61,7 @@ exports.getCheckout = (req, res, next) => {
   });
 };
 
-/*
+
 exports.getContact= (req,res,next)=>{
     res.render('contactus',{
         pageTitle: 'Contact Us',
@@ -75,4 +84,4 @@ exports.getFormSuccess= (req,res,next)=>{
         activeSuccess: true,
         productsCSS: true
     });
-}*/
+  }
